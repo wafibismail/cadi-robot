@@ -46,6 +46,7 @@ public class ActionStep extends Action {
   }
   
   public void act(Direction dir) {
+    this.act();
     if (dir==Direction.LEFT)
       this.getRobot().move(-this.lastDistance, 0);
     else
