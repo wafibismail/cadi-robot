@@ -9,6 +9,8 @@ class "Action" as a {
   +void act()
 }
 
+a "1" *-- "1" CR : controls
+
 enum Direction {
   LEFT
   RIGHT
