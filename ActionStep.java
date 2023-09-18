@@ -49,7 +49,11 @@ public class ActionStep extends Action {
     this.act();
     if (dir==Direction.LEFT)
       this.getRobot().move(-this.lastDistance, 0);
-    else
+    else if (dir==Direction.RIGHT)
       this.getRobot().move(this.lastDistance, 0);
+  }
+
+  public double getTurnAngle() {
+    return this.turnAngle;
   }
 }
