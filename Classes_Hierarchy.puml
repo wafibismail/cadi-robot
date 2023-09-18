@@ -32,4 +32,155 @@ class "ActionSquat" as aSq {
 
 a <|-- aSt
 aSt <|-- aSq
+
+interface "Drawable" as d {
+  +void drawSelf(Draw draw)
+  +void move(double xShift, double yShift)
+}
+
+class "DrawableCircle" as dC {
+  -double radius
+  -double x
+  -double y
+  -Color fillColor
+  -Drawable[] bodyparts
+
+  +DrawableCircle(double x, double y, double radius, Color fillColor)
+  
+  +void drawSelf(Draw draw)
+  +void move(double xShift, double yShift)
+
+  +double getX()
+  +double getY()
+  +double getRadius()
+
+  +void addChild(Drawable newPart)
+  -void drawChildren(Draw draw)
+  -void moveChildren(double xShift, double yShift)
+}
+
+d <|-- dC
+
+class "Eye" as dCE {
+  +Eye(double x, double y, double radius)
+}
+
+dC <|-- dCE
+
+class "Head" as dCH {
+  -Eye lEye
+  -Eye rEye
+
+  +Head(double x, double y, double radius)
+
+  +Eye getEye(int index)
+  +double getForeHeadY()
+}
+
+dC <|-- dCH
+dCH "1" *-- "2" dCE : has
+
+class "HeadTorso" as dCHT {
+  -Torso torso
+
+  +HeadTorso(double x, double y, double radius)
+
+  #double[] getTorsoXCoords()
+  #double[] getTorsoYCoords()
+
+  +boolean isTorsoTouched(double x, double y)
+  +boolean isTorsoHTouched(double x)
+  +boolean isTorsoVTouched(double y)
+}
+
+dCH <|-- dCHT
+
+class "HeadTorsoArms" as dCHTA {
+  -LimbSegment lArm, rArm;
+
+  +HeadTorsoArms(double x, double y, double radius)
+
+  +LimbSegment getArm(int index)
+}
+
+dCHT <|-- dCHTA
+dCHTA "1" *-- "2" LimbSegment : has
+
+class "HeadTorsoArmsLegs" as dCHTAL {
+  -LimbSegment lLeg, rLeg;
+
+  +HeadTorsoArmsLegs(double x, double y, double radius)
+
+  +LimbSegment getLeg(int index)
+}
+
+dCHTA <|-- dCHTAL
+dCHTAL "1" *-- "2" LimbSegment : has
+
+class "DrawableRectangle" as dR {
+  -double x
+  -double y
+  -double l
+  -double w
+  -double rotation
+  -Color fillColor
+  -Drawable[] bodyparts
+
+  +DrawableRectangle(double x, double y, double l, double w, double rotation, Color fillColor)
+  
+  +void drawSelf(Draw draw)
+  +void move(double xShift, double yShift)
+
+  +double[] getXCoords()
+  +double[] getYCoords()
+  +double getX()
+  +double getY()
+  +double getXEnd()
+  +double getYEnd()
+  +double getRotation()
+  +double getW()
+  +double getL()
+  +void setX(double x)
+  +void setY(double y)
+
+  +void rotate(double angle)
+
+  +void addChild(Drawable newPart)
+  -void drawChildren(Draw draw)
+  -void moveChildren(double xShift, double yShift)
+}
+
+d <|-- dR
+
+class "Torso" as dRT {
+  +Torso(double x, double y, double h, double w)
+  +Torso(double x, double y, double radius)
+
+  +boolean isTouched(double x, double y)
+  +boolean isVTouched(double y)
+  +boolean isDTouched(double x)
+}
+
+dR <|-- dRT
+
+class "LimbSegment" as LimbSegment {
+  -LimbSegment nextSegment
+  -boolean isLeftLimb
+  -boolean hasNextSegment
+
+  +LimbSegment(double x, double y, double h, double w, boolean isExtremity, boolean isLeftLimb)
+  +LimbSegment(double x, double y, double radius, boolean isLeftLimb)
+  
+  -void addSegment(LimbSegment segment)
+  -void addForeLimb()
+  -void addExtremity()
+
+  +void rotate(double angle)
+  +double getExtremityXEnd()
+  +double getExtremityYEnd()
+}
+
+dR <|-- LimbSegment
+
+LimbSegment "1" *-- "(0,1)" LimbSegment : has
 @enduml
