@@ -2,10 +2,13 @@ public class HeadTorsoArmsLegs extends HeadTorsoArms{
   private LimbSegment lLeg, rLeg;
   public HeadTorsoArmsLegs(double x, double y, double radius) {
     super(x, y, radius);
-    double [] xCoords = this.torso.getXCoords();
-    double [] yCoords = this.torso.getYCoords();
+
+    double [] xCoords = getTorsoXCoords();
+    double [] yCoords = getTorsoYCoords();
+
     rLeg = new LimbSegment(xCoords[2], yCoords[2], radius, false);
     lLeg = new LimbSegment(xCoords[3], yCoords[3], radius, true);
+    
     addChild(rLeg);
     addChild(lLeg);
   }

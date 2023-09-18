@@ -1,21 +1,31 @@
 public class HeadTorso extends Head {
-  protected Torso torso;
+  private Torso torso;
   public HeadTorso (double x, double y, double radius) {
     super(x, y, radius);
-    this.torso = new Torso(x, y-radius, radius);
-    this.addChild(torso);
+
+    torso = new Torso(x, y-radius, radius);
+    
+    addChild(torso);
+  }
+
+  protected double [] getTorsoXCoords() {
+    return torso.getXCoords();
+  }
+
+  protected double [] getTorsoYCoords() {
+    return torso.getYCoords();
   }
 
   public boolean isTorsoTouched(double x, double y) {
-    return this.torso.isTouched(x, y);
+    return torso.isTouched(x, y);
   }
 
   public boolean isTorsoHTouched(double x) {
-    return this.torso.isHTouched(x);
+    return torso.isHTouched(x);
   }
 
   public boolean isTorsoVTouched(double y) {
-    return this.torso.isVTouched(y);
+    return torso.isVTouched(y);
   }
   
 }
