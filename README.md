@@ -20,4 +20,4 @@ del *.class
 
 Class Diagram (unfinished)
 
-<img src=Classes_Hierarchy.png>
+<img src=ClassesHierarchy.png>
