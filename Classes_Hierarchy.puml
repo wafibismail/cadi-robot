@@ -183,4 +183,23 @@ class "LimbSegment" as LimbSegment {
 dR <|-- LimbSegment
 
 LimbSegment "1" *-- "(0,1)" LimbSegment : has
+
+class "CompleteRobot" as CR {
+  -ActionStep moveAction
+  -Action curentAction
+
+  +CompleteRobot(double x, double y, double radius)
+
+  +changeAction(Action newAction)
+  +changeMoveAction(ActionStep newMoveAction)
+
+  +void act()
+  +void toLeft()
+  +void toRight()
+  +void say(Draw draw, String speechText)
+}
+
+dCHTAL <|-- CR
+CR "1" *-- "1" aSt : uses
+CR "1" *-- "1" a : uses
 @enduml
