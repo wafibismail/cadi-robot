@@ -19,4 +19,8 @@ public class Action {
   public void act() {
     this.groundRobot();
   }
+  
+  public void act(Direction dir) {
+    this.act();
+  }
 }

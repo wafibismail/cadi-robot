@@ -19,6 +19,10 @@ public class CompleteRobot extends HeadTorsoArmsLegs{
     this.currentAction.act();
   }
 
+  public void act(Direction dir) {
+    this.currentAction.act(dir);
+  }
+
   public void toLeft() {
     this.moveAction.act(Direction.LEFT);
   }

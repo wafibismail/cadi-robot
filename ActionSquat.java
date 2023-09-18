@@ -14,7 +14,6 @@ public class ActionSquat extends ActionStep{
         while (rLeg.getRotation() > Math.PI/5*1)
           super.act();
       }
-      System.out.println(rLeg.getRotation());
     }
   }
 }
