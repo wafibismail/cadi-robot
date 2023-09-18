@@ -19,4 +19,5 @@ del *.class
 ```
 
 Class Diagram (unfinished)
+
 <img src=Classes_Hierarchy.png>
