@@ -17,3 +17,6 @@ In case of any changes updates to the code base, before recompiling the client, 
 ```
 del *.class
 ```
+
+Class Diagram (unfinished)
+<img src=ClassesHierarchy.png>
