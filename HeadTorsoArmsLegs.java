@@ -1,5 +1,5 @@
 public class HeadTorsoArmsLegs extends HeadTorsoArms{
-  protected LimbSegment lLeg, rLeg;
+  private LimbSegment lLeg, rLeg;
   public HeadTorsoArmsLegs(double x, double y, double radius) {
     super(x, y, radius);
     double [] xCoords = this.torso.getXCoords();
