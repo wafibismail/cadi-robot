@@ -23,7 +23,6 @@ class "ActionStep" as aSt {
   +ActionStep(CompleteRobot robot)
   +ActionStep(CompleteRobot robot, double maxAngle, double minAngle, double turnAngle)
 
-  +double getLastDistance()
   +act(Direction dir)
 }
 
