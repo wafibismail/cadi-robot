@@ -1,15 +1,21 @@
 public class ActionStep extends Action {
-  private final double maxAngle = Math.PI;
-  private final double minAngle = Math.PI/5*4;
-  private double turnAngle = Math.PI/5;
+  private final double maxAngle;
+  private final double minAngle;
+  private double turnAngle;
   private double lastDistance;
 
   public ActionStep(CompleteRobot robot) {
     super(robot);
+    this.maxAngle = Math.PI;
+    this.minAngle = Math.PI/5*4;
+    this.turnAngle =  Math.PI/5;
   }
 
-  protected double getLastDistance() {
-    return this.lastDistance;
+  public ActionStep(CompleteRobot robot, double maxAngle, double minAngle, double turnAngle) {
+    super(robot);
+    this.maxAngle = maxAngle;
+    this.minAngle = minAngle;
+    this.turnAngle = turnAngle;
   }
 
   @Override
@@ -21,10 +27,10 @@ public class ActionStep extends Action {
     LimbSegment rLeg = robot.getLeg(1);
 
     if (rLeg.getRotation() <= minAngle) {
-      turnAngle = minAngle/4;
+      turnAngle = Math.abs(turnAngle);
     }
     else if (rLeg.getRotation() >= maxAngle) {
-      turnAngle = -minAngle/4;
+      turnAngle = -Math.abs(turnAngle);
     }
 
     double x0 = lLeg.getExtremityXEnd();
@@ -37,5 +43,12 @@ public class ActionStep extends Action {
     this.lastDistance = Math.abs(x1-x0);
 
     this.groundRobot();
+  }
+  
+  public void act(Direction dir) {
+    if (dir==Direction.LEFT)
+      this.getRobot().move(-this.lastDistance, 0);
+    else
+      this.getRobot().move(this.lastDistance, 0);
   }
 }

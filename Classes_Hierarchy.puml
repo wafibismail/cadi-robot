@@ -1,0 +1,36 @@
+@startuml Classes_Hierarchy
+class "Action" as a {
+  -CompleteRobot robot
+
+  +Action(CompleteRobot robot)
+
+  #CompleteRobot getRobot()
+  #void groundRobot()
+  +void act()
+}
+
+enum Direction {
+  LEFT
+  RIGHT
+}
+
+class "ActionStep" as aSt {
+  -double maxAngle
+  -double minAngle
+  -double turnAngle
+  -double lastDistance
+
+  +ActionStep(CompleteRobot robot)
+  +ActionStep(CompleteRobot robot, double maxAngle, double minAngle, double turnAngle)
+
+  +double getLastDistance()
+  +act(Direction dir)
+}
+
+class "ActionSquat" as aSq {
+  +ActionSquat(CompleteRobot robot)
+}
+
+a <|-- aSt
+aSt <|-- aSq
+@enduml

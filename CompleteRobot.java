@@ -1,20 +1,18 @@
 public class CompleteRobot extends HeadTorsoArmsLegs{
-  private Action moveLeftAction, moveRightAction;
+  private ActionStep moveAction;
   private Action currentAction;
   public CompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
 
-    this.moveLeftAction = new ActionStepLeft(this);
-    this.moveRightAction = new ActionStepRight(this);
+    this.moveAction = new ActionStep(this);
     this.currentAction = new Action(this);
   }
 
   public void changeAction(Action newAction) {
     this.currentAction = newAction;
   }
-  public void changeMoveActions(Action newLeftAction, Action newRightAction) {
-    this.moveLeftAction = newLeftAction;
-    this.moveRightAction = newRightAction;
+  public void changeMoveAction(ActionStep newMoveAction) {
+    this.moveAction = newMoveAction;
   }
 
   public void act() {
@@ -22,11 +20,11 @@ public class CompleteRobot extends HeadTorsoArmsLegs{
   }
 
   public void toLeft() {
-    this.moveLeftAction.act();
+    this.moveAction.act(Direction.LEFT);
   }
 
   public void toRight() {
-    this.moveRightAction.act();
+    this.moveAction.act(Direction.RIGHT);
   }
 
   public void say(Draw draw, String speechText) {

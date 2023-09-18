@@ -40,11 +40,11 @@ public class RobotClient implements DrawListener {
             if (isNormalWalking) {
                 speechText = speechText + " I just switched to squat-walking!";
                 isNormalWalking = false;
-                robot.changeMoveActions(new ActionSquatLeft(robot), new ActionSquatRight(robot));
+                robot.changeMoveAction(new ActionSquat(robot));
             } else {
                 speechText = speechText + " I am switching to normal walking!";
                 isNormalWalking = true;
-                robot.changeMoveActions(new ActionStepLeft(robot), new ActionStepRight(robot));
+                robot.changeMoveAction(new ActionStep(robot));
 
             }
         }
