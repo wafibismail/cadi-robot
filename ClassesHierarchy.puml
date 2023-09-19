@@ -15,6 +15,7 @@ a "1" *-- "1" CR : controls
 enum Direction {
   LEFT
   RIGHT
+  DOWN
 }
 
 class "ActionStep" as aSt {
@@ -41,7 +42,7 @@ interface "Drawable" as d {
   +void move(double xShift, double yShift)
 }
 
-class "DrawableCircle" as dC {
+abstract class "DrawableCircle" as dC {
   -double radius
   -double x
   -double y
@@ -120,7 +121,7 @@ class "HeadTorsoArmsLegs" as dCHTAL {
 dCHTA <|-- dCHTAL
 dCHTAL "1" *-- "2" LimbSegment : has
 
-class "DrawableRectangle" as dR {
+abstract class "DrawableRectangle" as dR {
   -double x
   -double y
   -double l
@@ -230,19 +231,41 @@ LimbSegment "1" *-- "(0,1)" LimbSegment : has
 class "CompleteRobot" as CR {
   -ActionStep moveAction
   -Action curentAction
+  -Speech speech
 
   +CompleteRobot(double x, double y, double radius)
 
-  +changeAction(Action newAction)
-  +changeMoveAction(ActionStep newMoveAction)
+  #changeAction(Action newAction)
 
-  +void act()
-  +void toLeft()
-  +void toRight()
-  +void say(Draw draw, String speechText)
+  #void act()
+  #void toLeft()
+  #void toRight()
+  #void say(String speechText)
 }
 
 dCHTAL <|-- CR
 CR "1" *-- "1" aSt : uses
 CR "1" *-- "1" a : uses
+
+class "HandWashingCompleteRobot" as HWCR {
+    +HandWashingCompleteRobot(double x, double y, double radius)
+    
+    +void goToX(double destX, String destLabel)
+    +boolean bothHandsCanFit(Touchable obj)
+    +void soakHands()
+    +void squat()
+}
+
+CR <|-- HWCR
+
+class Speech {
+  -String speechText
+  -double x
+  -double y
+  public Speech(double x, double y)
+  public void changeText(String newText)
+}
+
+d <|.. Speech
+
 @enduml

@@ -12,30 +12,27 @@ public class CompleteRobot extends HeadTorsoArmsLegs{
     addChild(speech);
   }
 
-  public void changeAction(Action newAction) {
+  protected void changeAction(Action newAction) {
     this.currentAction = newAction;
   }
-  public void changeMoveAction(ActionStep newMoveAction) {
-    this.moveAction = newMoveAction;
-  }
 
-  public void act() {
+  protected void act() {
     this.currentAction.act();
   }
 
-  public void act(Direction dir) {
+  protected void act(Direction dir) {
     this.currentAction.act(dir);
   }
 
-  public void toLeft() {
+  protected void toLeft() {
     this.moveAction.act(Direction.LEFT);
   }
 
-  public void toRight() {
+  protected void toRight() {
     this.moveAction.act(Direction.RIGHT);
   }
 
-  public void say(String speechText) {
+  protected void say(String speechText) {
     speech.changeText(speechText);
   }
 }
