@@ -80,6 +80,12 @@ Example:
 
 <img src=PUML/InterfaceExample.png>
 
+Notice that the classes `Basin`, `Water`, and `Torso` all implement the `Touchable` interface.
+
+What this results in is the three classes will be required to implement the methods `isTouched`, `isHTouched` and `isVTouched` as declared in the interface.
+
+Also, any object derived from `Basin`, `Water`, or `Torso` can be passed as argument to the method `bothHandsCanFit(Touchable obj)`.
+
 ```Java
 private boolean bothHandsCanFit(Touchable obj) {
   double leftHandX = getArm(0).getExtremityXEnd()-0.25;
@@ -89,12 +95,6 @@ private boolean bothHandsCanFit(Touchable obj) {
   return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
 }
 ```
-
-Notice that the classes `Basin`, `Water`, and `Torso` all implement the `Touchable` interface.
-
-What this results in is the three classes will be required to implement the methods `isTouched`, `isHTouched` and `isVTouched` declared in the interface.
-
-Also, any object derived from `Basin`, `Water`, or `Torso` can be passed as argument to the method `bothHandsCanFit(Touchable obj)`.
 
 ## The Open-Closed Principle
 
