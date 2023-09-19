@@ -329,7 +329,13 @@ Here is the class diagram containing just the classes which `Basin`'s visible bo
 
 In the above designs, the application development key principles are obeyed.
 
-(explain how)
+*(explain how)*
+
+## Part 5 - `RobotClient` and its Activity Diagram
+
+*(to be continued)*
+
+_________________________________________
 
 # Complete Class Diagram
 
