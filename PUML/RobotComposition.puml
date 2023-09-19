@@ -1,28 +1,5 @@
 @startuml "Robot Composition"
 
-interface "Drawable" as d {
-  +void drawSelf(Draw draw)
-  +void move(double xShift, double yShift)
-}
-
-abstract class "DrawableCircle" as dC {
-  -double radius
-  -double x
-  -double y
-  -Color fillColor
-  -Drawable[] bodyparts
-
-  +DrawableCircle(double x, double y, double radius, Color fillColor)
-  
-  +double getX()
-  +double getY()
-  +double getRadius()
-
-  +void addChild(Drawable newPart)
-  -void drawChildren(Draw draw)
-  -void moveChildren(double xShift, double yShift)
-}
-
 class "Eye" as dCE {
   +Eye(double x, double y, double radius)
 }
@@ -66,36 +43,6 @@ class "HeadTorsoArmsLegs" as dCHTAL {
   +LimbSegment getLeg(int index)
 }
 
-abstract class "DrawableRectangle" as dR {
-  -double x
-  -double y
-  -double l
-  -double w
-  -double rotation
-  -Color fillColor
-  -Drawable[] bodyparts
-
-  +DrawableRectangle(double x, double y, double l, double w, double rotation, Color fillColor)
-  
-  +double[] getXCoords()
-  +double[] getYCoords()
-  +double getX()
-  +double getY()
-  +double getXEnd()
-  +double getYEnd()
-  +double getRotation()
-  +double getW()
-  +double getL()
-  +void setX(double x)
-  +void setY(double y)
-
-  +void rotate(double angle)
-
-  +void addChild(Drawable newPart)
-  -void drawChildren(Draw draw)
-  -void moveChildren(double xShift, double yShift)
-}
-
 class "Torso" as dRT {
   +Torso(double x, double y, double h, double w)
   +Torso(double x, double y, double radius)
@@ -136,21 +83,13 @@ class "CompleteRobot" as CR {
   #void say(String speechText)
 }
 
-d <|.. dC
-dC <|-- dCE
-dC <|-- dCH
 dCH "1" *-- "2" dCE : has
 dCH <|-- dCHT
 dCHT <|-- dCHTA
 dCHTA "1" *-- "2" LimbSegment : has
 dCHTA <|-- dCHTAL
 dCHTAL "1" *-- "2" LimbSegment : has
-d <|.. dR
-dR <|-- dRT
 dCHT "1" *-- "1" dRT : has
-dR <|-- LimbSegment
 LimbSegment "1" *-- "(0,1)" LimbSegment : has
 dCHTAL <|-- CR
-dC "1" *-- "many" d : contains
-dR "1" *-- "many" d : contains
 @enduml
