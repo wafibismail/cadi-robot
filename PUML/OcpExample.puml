@@ -18,12 +18,16 @@ class "CompleteRobot" as CR {
   #void say(String speechText)
 }
 
+class "SquattingCompleteRobot" as SCR {
+  +SquattingCompleteRobot(double x, double y, double radius)
+  +void squat()
+}
+
 class "HandWashingCompleteRobot" as HWCR {
     +HandWashingCompleteRobot(double x, double y, double radius)
     
     -boolean bothHandsCanFit(Touchable obj)
     -void soakHands()
-    +void squat()
     +void useBasin(Basin basin)
 }
 
@@ -31,5 +35,6 @@ class "CrabCompleteRobot" as CCR {
   +CrabCompleteRobot(double x, double y, double radius)
 }
 CR <|-- CCR
-CR <|-- HWCR
+CR <|-- SCR
+SCR <|-- HWCR
 @enduml

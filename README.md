@@ -106,19 +106,46 @@ Example:
 
 Here, the superclass CompleteRobot is written in a way that it should not need to be modified even in the case of introduction of either:
 
-- new tasks for the robot to do, e.g., soaking the robot's hands
 - new behaviour e.g., different way of moving the robot's limbs for an existing task e.g., walking.
-
+- new tasks for the robot to do, e.g., soaking the robot's hands
 
 ```Java
-public class HandWashingCompleteRobot extends CompleteRobot{
-  // This subclass has four more methods and a different Action
-  // both of which are required for it to "soak hands in water"
-  // and "perform squats" as its additional activity
-  public HandWashingCompleteRobot(double x, double y, double radius) {
+public class CrabCompleteRobot extends CompleteRobot{
+  // This subclass is almost an exact copy of CompleteRobot,
+  // but with a different way of walking, i.e., Crabstep
+  public CrabCompleteRobot(double x, double y, double radius) {
+    super(x, y, radius);
+    this.changeMoveAction(new ActionCrabstep(this));
+    say("And I am the crab-walking robot.");
+  }
+}
+```
+
+```Java
+public class SquattingCompleteRobot extends CompleteRobot{
+  // This subclass has a different Action i.e. ActionSquat.
+  // It "performs squats" as its additional activity
+  public SquattingCompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
     this.changeAction(new ActionSquat(this));
-    say("Hello! I am the hand-soaking robot.");
+    say("Hello! I am a squatting robot.");
+  }
+
+  public void squat() {
+    act();
+    say("I am performing SQUATS");
+  }
+}
+```
+
+```Java
+public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
+  // This subclass has four more methods
+  // both of which are required for it to "soak hands in water"
+  // and "perform squats" as its additional activity
+  public HandWashingSquattingCompleteRobot(double x, double y, double radius) {
+    super(x, y, radius);
+    say("Hello! I am a robot who can both squat and soak my hands!.");
   }
 
   private boolean bothHandsCanFit(Touchable obj) {
@@ -133,11 +160,6 @@ public class HandWashingCompleteRobot extends CompleteRobot{
     act(Direction.DOWN);
     say("Soaking my hands!");
   }
-  
-  public void squat() {
-    act();
-    say("I am performing SQUATS");
-  }
 
   public void useBasin(Basin basin) {
     if (bothHandsCanFit(basin)) soakHands();
@@ -146,19 +168,12 @@ public class HandWashingCompleteRobot extends CompleteRobot{
 }
 ```
 
-```Java
-public class CrabCompleteRobot extends CompleteRobot{
-  // This subclass is almost an exact copy of CompleteRobot,
-  // but with a different way of walking, i.e., Crabstep
-  public CrabCompleteRobot(double x, double y, double radius) {
-    super(x, y, radius);
-    this.changeMoveAction(new ActionCrabstep(this));
-    say("And I am the crab-walking robot.");
-  }
-}
-```
-
 More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `HandWashingCompleteRobot`, or `CrabCompleteRobot` as their superclass, instead of modifying the three directly which would break the *Open-Close Principle*.
+
+- `CompleteRobot` - The most basic functional robot - walks normally and can neither "soak hands" nor "perform squats"
+- `CrabCompleteRobot` - A robot that is still basic, but walks differently i.e. crab-walk
+- `SquattingCompleteRobot` - A robot which can "perform squats"
+- `HandWashingSquattingCompleteRobot` - A robot which can "soak hands" and "perform squats"
 
 # Complete Class Diagram
 

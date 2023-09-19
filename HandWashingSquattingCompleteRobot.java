@@ -1,11 +1,10 @@
-public class HandWashingCompleteRobot extends CompleteRobot{
-  // This subclass has four more methods and a different Action
+public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
+  // This subclass has four more methods
   // both of which are required for it to "soak hands in water"
   // and "perform squats" as its additional activity
-  public HandWashingCompleteRobot(double x, double y, double radius) {
+  public HandWashingSquattingCompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
-    this.changeAction(new ActionSquat(this));
-    say("Hello! I am the hand-soaking robot.");
+    say("Hello! I am a robot who can both squat and soak my hands!.");
   }
 
   private boolean bothHandsCanFit(Touchable obj) {
@@ -19,11 +18,6 @@ public class HandWashingCompleteRobot extends CompleteRobot{
   private void soakHands() {
     act(Direction.DOWN);
     say("Soaking my hands!");
-  }
-  
-  public void squat() {
-    act();
-    say("I am performing SQUATS");
   }
 
   public void useBasin(Basin basin) {

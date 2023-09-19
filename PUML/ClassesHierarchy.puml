@@ -206,12 +206,16 @@ class "CrabCompleteRobot" as CCR {
   +CrabCompleteRobot(double x, double y, double radius)
 }
 
+class "SquattingCompleteRobot" as SCR {
+  +SquattingCompleteRobot(double x, double y, double radius)
+  +void squat()
+}
+
 class "HandWashingCompleteRobot" as HWCR {
   +HandWashingCompleteRobot(double x, double y, double radius)
   
   -boolean bothHandsCanFit(Touchable obj)
   -void soakHands()
-  +void squat()
   +void useBasin(Basin basin)
 }
 
@@ -269,7 +273,8 @@ CR "1" *-- "1" aSt : uses
 CR "1" *-- "1" a : uses
 CR "1" *-- "1" Speech : uses
 CR <|-- CCR
-CR <|-- HWCR
+CR <|-- SCR
+SCR <|-- HWCR
 d <|.. Speech
 dC "1" *-- "many" d : contains
 dR "1" *-- "many" d : contains
