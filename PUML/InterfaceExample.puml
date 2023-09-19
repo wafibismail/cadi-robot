@@ -1,12 +1,11 @@
 @startuml "Interface Examples"
 
-class "HandWashingCompleteRobot" as HWCR {
-    +HandWashingCompleteRobot(double x, double y, double radius)
-    
-    -boolean bothHandsCanFit(Touchable obj)
-    -void soakHands()
-    +void squat()
-    +void useBasin(Basin basin)
+class "HandWashingSquattingCompleteRobot" as HWCR {
+  +HandWashingSquattingCompleteRobot(double x, double y, double radius)
+  
+  -boolean bothHandsCanFit(Touchable obj)
+  -void soakHands()
+  +void useBasin(Basin basin)
 }
 
 note right of HWCR::"boolean bothHandsCanFit(Touchable obj)"
