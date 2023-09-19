@@ -140,9 +140,9 @@ public class SquattingCompleteRobot extends CompleteRobot{
 
 ```Java
 public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
-  // This subclass has four more methods
-  // both of which are required for it to "soak hands in water"
-  // and "perform squats" as its additional activity
+  // This subclass has three more methods
+  // which are required for it to "soak hands in water"
+  // in addition to squatting (activity belonging to its superclass)
   public HandWashingSquattingCompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
     say("Hello! I am a robot who can both squat and soak my hands!.");
