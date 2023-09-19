@@ -1,12 +1,12 @@
 import java.awt.Color;
 
-public class RobotClient2 implements DrawListener{
+public class RobotClient implements DrawListener{
   private Draw draw = new Draw();
   private Basin basin = new Basin(5, 0.75, 1);
   private HandWashingCompleteRobot robot = new HandWashingCompleteRobot(2.5, 0, 0.25);
   private Color bgColor = new Color(192, 192, 255);
 
-  public RobotClient2() {
+  public RobotClient() {
     draw.addListener(this);
     draw.setXscale(0, 7);
     draw.setYscale(0, 7);
@@ -37,6 +37,6 @@ public class RobotClient2 implements DrawListener{
   }
   
   public static void main(String[] args) {
-      new RobotClient2();
+      new RobotClient();
   }
 }
