@@ -10,8 +10,6 @@ class "Action" as a {
   +void act(Direction dir)
 }
 
-a "1" *-- "1" CR : controls
-
 enum Direction {
   LEFT
   RIGHT
@@ -33,9 +31,6 @@ class "ActionStep" as aSt {
 class "ActionSquat" as aSq {
   +ActionSquat(CompleteRobot robot)
 }
-
-a <|-- aSt
-aSt <|-- aSq
 
 interface "Drawable" as d {
   +void drawSelf(Draw draw)
@@ -63,13 +58,9 @@ abstract class "DrawableCircle" as dC {
   -void moveChildren(double xShift, double yShift)
 }
 
-d <|.. dC
-
 class "Eye" as dCE {
   +Eye(double x, double y, double radius)
 }
-
-dC <|-- dCE
 
 class "Head" as dCH {
   -Eye lEye
@@ -80,9 +71,6 @@ class "Head" as dCH {
   +Eye getEye(int index)
   +double getForeHeadY()
 }
-
-dC <|-- dCH
-dCH "1" *-- "2" dCE : has
 
 class "HeadTorso" as dCHT {
   -Torso torso
@@ -97,8 +85,6 @@ class "HeadTorso" as dCHT {
   +boolean isTorsoVTouched(double y)
 }
 
-dCH <|-- dCHT
-
 class "HeadTorsoArms" as dCHTA {
   -LimbSegment lArm, rArm;
 
@@ -107,9 +93,6 @@ class "HeadTorsoArms" as dCHTA {
   +LimbSegment getArm(int index)
 }
 
-dCHT <|-- dCHTA
-dCHTA "1" *-- "2" LimbSegment : has
-
 class "HeadTorsoArmsLegs" as dCHTAL {
   -LimbSegment lLeg, rLeg;
 
@@ -117,9 +100,6 @@ class "HeadTorsoArmsLegs" as dCHTAL {
 
   +LimbSegment getLeg(int index)
 }
-
-dCHTA <|-- dCHTAL
-dCHTAL "1" *-- "2" LimbSegment : has
 
 abstract class "DrawableRectangle" as dR {
   -double x
@@ -154,8 +134,6 @@ abstract class "DrawableRectangle" as dR {
   -void moveChildren(double xShift, double yShift)
 }
 
-d <|.. dR
-
 interface "Touchable" as tb{
   +boolean isTouched(double x, double y)
   +boolean isHTouched(double x)
@@ -170,42 +148,24 @@ class Basin {
   
   +Basin(double x, double y, double size)
   +void drawTopLayer(Draw draw)
-
 }
-
-dR <|-- Basin
-tb <|.. Basin
 
 class BasinFloor {
   +BasinFloor(double x, double y, double size)
 }
 
-dR <|-- BasinFloor
-Basin "1" *-- "1" BasinFloor : has
-
 class BasinWall {
   +BasinWall(double x, double y, double size)
 }
-
-dR <|-- BasinWall
-Basin "1" *-- "2" BasinWall : has
 
 class Water {
   +Water(double x, double y, double size)
 }
 
-dR <|-- Water
-tb <|.. Water
-Basin "1" *-- "1" Water : has
-
 class "Torso" as dRT {
   +Torso(double x, double y, double h, double w)
   +Torso(double x, double y, double radius)
 }
-
-dR <|-- dRT
-tb <|.. dRT
-dCHT "1" *-- "1" dRT : has
 
 class "LimbSegment" as LimbSegment {
   -LimbSegment nextSegment
@@ -223,10 +183,6 @@ class "LimbSegment" as LimbSegment {
   +double getExtremityXEnd()
   +double getExtremityYEnd()
 }
-
-dR <|-- LimbSegment
-
-LimbSegment "1" *-- "(0,1)" LimbSegment : has
 
 class "CompleteRobot" as CR {
   -ActionStep moveAction
@@ -246,15 +202,9 @@ class "CompleteRobot" as CR {
   #void say(String speechText)
 }
 
-dCHTAL <|-- CR
-CR "1" *-- "1" aSt : uses
-CR "1" *-- "1" a : uses
-CR "1" *-- "1" Speech : uses
-
 class "CrabCompleteRobot" as CCR {
   +CrabCompleteRobot(double x, double y, double radius)
 }
-CR <|-- CCR
 
 class "HandWashingCompleteRobot" as HWCR {
     +HandWashingCompleteRobot(double x, double y, double radius)
@@ -264,7 +214,6 @@ class "HandWashingCompleteRobot" as HWCR {
     +void squat()
     +void useBasin(Basin basin)
 }
-CR <|-- HWCR
 
 class Speech {
   -String speechText
@@ -273,10 +222,6 @@ class Speech {
   public Speech(double x, double y)
   public void changeText(String newText)
 }
-
-d <|.. Speech
-dC "1" *-- "many" d : contains
-dR "1" *-- "many" d : contains
 
 class "RobotClient" as RC {
   -Draw draw
@@ -292,4 +237,43 @@ class "RobotClient" as RC {
   {static} +void main(String[] args)
 }
 
+a "1" *-- "1" CR : controls
+a <|-- aSt
+aSt <|-- aSq
+d <|.. dC
+dC <|-- dCE
+dC <|-- dCH
+dCH "1" *-- "2" dCE : has
+dCH <|-- dCHT
+dCHT <|-- dCHTA
+dCHTA "1" *-- "2" LimbSegment : has
+dCHTA <|-- dCHTAL
+dCHTAL "1" *-- "2" LimbSegment : has
+d <|.. dR
+dR <|-- Basin
+tb <|.. Basin
+dR <|-- BasinFloor
+Basin "1" *-- "1" BasinFloor : has
+dR <|-- BasinWall
+Basin "1" *-- "2" BasinWall : has
+dR <|-- Water
+tb <|.. Water
+Basin "1" *-- "1" Water : has
+dR <|-- dRT
+tb <|.. dRT
+dCHT "1" *-- "1" dRT : has
+dR <|-- LimbSegment
+LimbSegment "1" *-- "(0,1)" LimbSegment : has
+dCHTAL <|-- CR
+CR "1" *-- "1" aSt : uses
+CR "1" *-- "1" a : uses
+CR "1" *-- "1" Speech : uses
+CR <|-- CCR
+CR <|-- HWCR
+d <|.. Speech
+dC "1" *-- "many" d : contains
+dR "1" *-- "many" d : contains
+RC "1" *-- "1" Basin : has
+RC "1" *-- "1" HWCR : has
+RC "1" *-- "1" CR : has
 @enduml
