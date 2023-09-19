@@ -14,9 +14,6 @@ abstract class "DrawableCircle" as dC {
 
   +DrawableCircle(double x, double y, double radius, Color fillColor)
   
-  +void drawSelf(Draw draw)
-  +void move(double xShift, double yShift)
-
   +double getX()
   +double getY()
   +double getRadius()
@@ -80,9 +77,6 @@ abstract class "DrawableRectangle" as dR {
 
   +DrawableRectangle(double x, double y, double l, double w, double rotation, Color fillColor)
   
-  +void drawSelf(Draw draw)
-  +void move(double xShift, double yShift)
-
   +double[] getXCoords()
   +double[] getYCoords()
   +double getX()

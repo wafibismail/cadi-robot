@@ -267,7 +267,7 @@ Class diagram to demonstrate the above (also shown earlier for OCP):
 
 ## Part 3 - The Robot's Body Composition
 
-As has been done with constructing the robot's abilities, in composing the robot's bodyparts, the above concepts mentioned previously also applied.
+As has been done with constructing the robot's abilities, in composing the robot's bodyparts, the above concepts mentioned previously are also applied.
 
 Here is the class diagram of just the classes that compose the `CompleteRobot`'s visible body
 
