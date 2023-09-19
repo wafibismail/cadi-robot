@@ -168,7 +168,7 @@ public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
 }
 ```
 
-More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `HandWashingCompleteRobot`, or `CrabCompleteRobot` as their superclass, instead of modifying the three directly which would break the *Open-Close Principle*.
+More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `SquattingCompleteRobot`, `HandWashingSquattingCompleteRobot`, or `CrabCompleteRobot` as their superclass, instead of modifying the four directly which would break the *Open-Close Principle*.
 
 - `CompleteRobot` - The most basic functional robot - walks normally and can neither "soak hands" nor "perform squats"
 - `CrabCompleteRobot` - A robot that is still basic, but walks differently i.e. crab-walk
