@@ -1,28 +1,18 @@
-public class HandWashingCompleteRobot extends CompleteRobot {
+public class HandWashingCompleteRobot extends CompleteRobot{
   public HandWashingCompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
     this.changeAction(new ActionSquat(this));
+    say("Hello! I am the hand-soaking robot.");
   }
 
-  public void goToX(double destX, String destLabel) {
-    if (this.getX() < destX) {
-      this.toRight();
-      say("I am moving right towards " + destLabel);
-    }
-    else {
-      this.toLeft();
-      say("I am moving left towards " + destLabel);
-    }
+  private boolean bothHandsCanFit(Touchable obj) {
+    double leftHandX = getArm(0).getX()-0.25;
+    double rightHandX = getArm(1).getX()+0.25;
+
+    return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
   }
 
-  public boolean bothHandsCanFit(Touchable obj) {
-    double robLeftX = getArm(0).getX()-0.25;
-    double robRightX = getArm(1).getX()+0.25;
-
-    return obj.isHTouched(robLeftX) && obj.isHTouched(robRightX);
-  }
-
-  public void soakHands() {
+  private void soakHands() {
     act(Direction.DOWN);
     say("Soaking my hands!");
   }
@@ -30,5 +20,10 @@ public class HandWashingCompleteRobot extends CompleteRobot {
   public void squat() {
     act();
     say("I am performing SQUATS");
+  }
+
+  public void useBasin(Basin basin) {
+    if (bothHandsCanFit(basin)) soakHands();
+    else goToX(basin.getX(), "THE WATER BASIN");
   }
 }

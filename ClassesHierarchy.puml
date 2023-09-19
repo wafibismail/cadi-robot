@@ -235,27 +235,35 @@ class "CompleteRobot" as CR {
 
   +CompleteRobot(double x, double y, double radius)
 
+  #changeMoveAction(ActionStep newMoveAction)
   #changeAction(Action newAction)
 
   #void act()
-  #void toLeft()
-  #void toRight()
+  #void act(Direction dir)
+  +void gotoX(double destX, String destLabel)
+  -void moveLeft()
+  -void moveRight()
   #void say(String speechText)
 }
 
 dCHTAL <|-- CR
 CR "1" *-- "1" aSt : uses
 CR "1" *-- "1" a : uses
+CR "1" *-- "1" Speech : uses
+
+class "CrabCompleteRobot" as CCR {
+  +CrabCompleteRobot(double x, double y, double radius)
+}
+CR <|-- CCR
 
 class "HandWashingCompleteRobot" as HWCR {
     +HandWashingCompleteRobot(double x, double y, double radius)
     
-    +void goToX(double destX, String destLabel)
-    +boolean bothHandsCanFit(Touchable obj)
-    +void soakHands()
+    -boolean bothHandsCanFit(Touchable obj)
+    -void soakHands()
     +void squat()
+    +void useBasin(Basin basin)
 }
-
 CR <|-- HWCR
 
 class Speech {
@@ -267,5 +275,21 @@ class Speech {
 }
 
 d <|.. Speech
+dC "1" *-- "many" d : contains
+dR "1" *-- "many" d : contains
+
+class "RobotClient" as RC {
+  -Draw draw
+  -Basin basin
+  -HandWashingCompleteRobot hwRobot
+  -CompleteRobot anyRobot
+  -Color bgColor
+
+  +RobotClient()
+
+  -void drawAll()
+  +void mousePressed(double mouseX, double mouseY)
+  {static} +void main(String[] args)
+}
 
 @enduml
