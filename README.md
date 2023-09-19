@@ -80,6 +80,16 @@ Example:
 
 <img src=PUML/InterfaceExample.png>
 
+```Java
+private boolean bothHandsCanFit(Touchable obj) {
+  double leftHandX = getArm(0).getExtremityXEnd()-0.25;
+  double rightHandX = getArm(1).getExtremityXEnd()+0.25;
+
+  // Check that both hands are within the x range bounded by the object
+  return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
+}
+```
+
 # Complete Class Diagram
 
 <img src=PUML/ClassesHierarchy.png>

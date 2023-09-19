@@ -6,9 +6,11 @@ public class HandWashingCompleteRobot extends CompleteRobot{
   }
 
   private boolean bothHandsCanFit(Touchable obj) {
-    double leftHandX = getArm(0).getX()-0.25;
-    double rightHandX = getArm(1).getX()+0.25;
+    double leftHandX = getArm(0).getExtremityXEnd()-0.25;
+    double rightHandX = getArm(1).getExtremityXEnd()+0.25;
 
+
+    // Check that both hands are within the x range covered by the object
     return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
   }
 
