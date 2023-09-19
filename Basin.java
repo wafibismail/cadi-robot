@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Basin extends DrawableRectangle{
+public class Basin extends DrawableRectangle implements Touchable{
   private Water water;
   private BasinWall lWall, rWall;
   private BasinFloor floor;

@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Water extends DrawableRectangle{
+public class Water extends DrawableRectangle implements Touchable{
   public Water(double x, double y, double size) {
     super(x, y, size/2, size*2.5, Math.PI, new Color(0, 255, 255, 128));
   }
