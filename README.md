@@ -68,9 +68,9 @@ Method used in `RobotClient`:
 
 - `void mousePressed(double x, double y)` - Invoked when the mouse has been pressed.
 
-# Part 2 - Used Java concepts
+## Part 2 - Used Java concepts
 
-## Interface
+### Interface
 
 Interface is a type, just as a class is a type. It is used:
 - to define a protocol of behavior that can be implemented by any class anywhere in the class hierarchy, or
@@ -96,7 +96,7 @@ private boolean bothHandsCanFit(Touchable obj) {
 }
 ```
 
-## The Open-Closed Principle
+### The Open-Closed Principle
 
 > "Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification."
 
@@ -108,6 +108,8 @@ Here, the superclass CompleteRobot is written in a way that it should not need t
 
 - new behaviour e.g., different way of moving the robot's limbs for an existing task e.g., walking.
 - new tasks for the robot to do, e.g., performing squats, or soaking the robot's hands
+
+These new features can be added by creating new subclasses of `CompleteRobot`, as shown in these examples:
 
 ```Java
 // CrabCompleteRobot.java
@@ -140,6 +142,8 @@ public class SquattingCompleteRobot extends CompleteRobot{
 }
 ```
 
+And these subclasses can have further subclasses, e.g.:
+
 ```Java
 // HandWashingSquattingCompleteRobot.java
 public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
@@ -171,14 +175,14 @@ public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
 }
 ```
 
-More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `SquattingCompleteRobot`, `HandWashingSquattingCompleteRobot`, or `CrabCompleteRobot` as their superclass, instead of modifying the four directly which would break the *Open-Close Principle*.
+More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `CrabCompleteRobot`, `SquattingCompleteRobot` or `HandWashingSquattingCompleteRobot` as their superclass, instead of modifying the four directly which would break the *Open-Close Principle*.
 
 - `CompleteRobot` - The most basic functional robot - walks normally and can neither "soak hands" nor "perform squats"
 - `CrabCompleteRobot` - A robot that is still basic, but walks differently i.e. crab-walk
 - `SquattingCompleteRobot` - A basic robot which can also "perform squats"
 - `HandWashingSquattingCompleteRobot` - A robot which can "soak hands" and "perform squats"
 
-## The Don't Repeat Yourself Principle (DRY)
+### The Don't Repeat Yourself Principle (DRY)
 
 > ... the DRY principle forbids duplicating information or code across different locations in a codebase.
 
@@ -244,7 +248,7 @@ public class CompleteRobot extends HeadTorsoArmsLegs{
 
 Without inheritance, there would be an additional 50 lines of code for each new type of robot.
 
-## The Single Responsibility Principle
+### The Single Responsibility Principle
 
 > The Single Responsibility Principle (SRP) is a fundamental principle in software design that states that **a class or module** should have only one reason to change, meaning it **should have only one responsibility**.
 
@@ -260,6 +264,14 @@ As demonstrated in the case of `CompleteRobot` and its subclasses, each of the s
 Class diagram to demonstrate the above (also shown earlier for OCP):
 
 <img src=PUML/OcpExample.png>
+
+## Part 3 - The Robot's Body Composition
+
+As has been done with constructing the robot's abilities, in composing the robot's bodyparts, the above concepts mentioned previously also applied.
+
+Here is the class diagram of just the classes that compose the `CompleteRobot`'s visible body
+
+<img src=PUML/RobotComposition.png>
 
 # Complete Class Diagram
 
