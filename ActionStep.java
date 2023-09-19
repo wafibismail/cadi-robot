@@ -53,7 +53,7 @@ public class ActionStep extends Action {
       this.getRobot().move(this.lastDistance, 0);
   }
 
-  public double getTurnAngle() {
+  protected double getTurnAngle() {
     return this.turnAngle;
   }
 }

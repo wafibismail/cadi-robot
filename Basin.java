@@ -38,8 +38,4 @@ public class Basin extends DrawableRectangle implements Touchable{
     if(x > tX[0] || x < tX[1]) return false;
     return true;
   }
-
-  public boolean waterIsHTouched(double x) {
-    return water.isHTouched(x);
-  }
 }

@@ -1,6 +1,6 @@
 import java.awt.Color;
 
-public class Torso extends DrawableRectangle{
+public class Torso extends DrawableRectangle implements Touchable{
   public Torso(double x, double y, double h, double w) {
     super(x, y, h, w, Math.PI, Color.PINK);
   }

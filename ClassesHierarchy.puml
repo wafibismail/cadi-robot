@@ -7,6 +7,7 @@ class "Action" as a {
   #CompleteRobot getRobot()
   #void groundRobot()
   +void act()
+  +void act(Direction dir)
 }
 
 a "1" *-- "1" CR : controls
@@ -25,7 +26,7 @@ class "ActionStep" as aSt {
   +ActionStep(CompleteRobot robot)
   +ActionStep(CompleteRobot robot, double maxAngle, double minAngle, double turnAngle)
 
-  +act(Direction dir)
+  #double getTurnAngle()
 }
 
 class "ActionSquat" as aSq {
@@ -61,7 +62,7 @@ class "DrawableCircle" as dC {
   -void moveChildren(double xShift, double yShift)
 }
 
-d <|-- dC
+d <|.. dC
 
 class "Eye" as dCE {
   +Eye(double x, double y, double radius)
@@ -152,18 +153,57 @@ class "DrawableRectangle" as dR {
   -void moveChildren(double xShift, double yShift)
 }
 
-d <|-- dR
+d <|.. dR
+
+interface "Touchable" as tb{
+  +boolean isTouched(double x, double y)
+  +boolean isHTouched(double x)
+  +boolean isVTouched(double y)
+}
+
+class Basin {
+  -Water water
+  -BasinWall lWall
+  -BasinWall rWall
+  -BasinFloor floor
+  
+  +Basin(double x, double y, double size)
+  +void drawTopLayer(Draw draw)
+
+}
+
+dR <|-- Basin
+tb <|.. Basin
+
+class BasinFloor {
+  +BasinFloor(double x, double y, double size)
+}
+
+dR <|-- BasinFloor
+Basin "1" *-- "1" BasinFloor : has
+
+class BasinWall {
+  +BasinWall(double x, double y, double size)
+}
+
+dR <|-- BasinWall
+Basin "1" *-- "2" BasinWall : has
+
+class Water {
+  +Water(double x, double y, double size)
+}
+
+dR <|-- Water
+tb <|.. Water
+Basin "1" *-- "1" Water : has
 
 class "Torso" as dRT {
   +Torso(double x, double y, double h, double w)
   +Torso(double x, double y, double radius)
-
-  +boolean isTouched(double x, double y)
-  +boolean isVTouched(double y)
-  +boolean isDTouched(double x)
 }
 
 dR <|-- dRT
+tb <|.. dRT
 dCHT "1" *-- "1" dRT : has
 
 class "LimbSegment" as LimbSegment {
