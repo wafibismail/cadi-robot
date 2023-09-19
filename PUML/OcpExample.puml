@@ -20,11 +20,12 @@ class "CompleteRobot" as CR {
 
 class "SquattingCompleteRobot" as SCR {
   +SquattingCompleteRobot(double x, double y, double radius)
+  
   +void squat()
 }
 
-class "HandWashingCompleteRobot" as HWCR {
-    +HandWashingCompleteRobot(double x, double y, double radius)
+class "HandWashingSquattingCompleteRobot" as HWCR {
+    +HandWashingSquattingCompleteRobot(double x, double y, double radius)
     
     -boolean bothHandsCanFit(Touchable obj)
     -void soakHands()
