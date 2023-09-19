@@ -3,7 +3,7 @@ import java.awt.Color;
 public class RobotClient implements DrawListener{
   private Draw draw = new Draw();
   private Basin basin = new Basin(5, 0.75, 1);
-  private HandWashingSquattingCompleteRobot hwRobot = new HandWashingSquattingCompleteRobot(2.5, 0, 0.25);
+  private HandWashingSquattingCompleteRobot hwRobot = new HandWashingSquattingCompleteRobot(4.25, 0, 0.25);
   private CompleteRobot anyRobot = new CrabCompleteRobot(7.5, 0, 0.15);
   private Color bgColor = new Color(192, 192, 255);
 

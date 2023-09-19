@@ -145,7 +145,7 @@ public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
   // in addition to squatting (activity belonging to its superclass)
   public HandWashingSquattingCompleteRobot(double x, double y, double radius) {
     super(x, y, radius);
-    say("Hello! I am a robot who can both squat and soak my hands!.");
+    say("Hello! I am a robot who can both squat and soak my hands!");
   }
 
   private boolean bothHandsCanFit(Touchable obj) {
