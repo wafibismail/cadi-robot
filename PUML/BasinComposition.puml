@@ -1,0 +1,70 @@
+@startuml "Basin Composition"
+
+abstract class "DrawableRectangle" as dR {
+  -double x
+  -double y
+  -double l
+  -double w
+  -double rotation
+  -Color fillColor
+  -Drawable[] bodyparts
+
+  +DrawableRectangle(double x, double y, double l, double w, double rotation, Color fillColor)
+
+  +double[] getXCoords()
+  +double[] getYCoords()
+  +double getX()
+  +double getY()
+  +double getXEnd()
+  +double getYEnd()
+  +double getRotation()
+  +double getW()
+  +double getL()
+  +void setX(double x)
+  +void setY(double y)
+
+  +void rotate(double angle)
+
+  +void addChild(Drawable newPart)
+  -void drawChildren(Draw draw)
+  -void moveChildren(double xShift, double yShift)
+}
+
+interface "Touchable" as tb{
+  +boolean isTouched(double x, double y)
+  +boolean isHTouched(double x)
+  +boolean isVTouched(double y)
+}
+
+class Basin {
+  -Water water
+  -BasinWall lWall
+  -BasinWall rWall
+  -BasinFloor floor
+  
+  +Basin(double x, double y, double size)
+  +void drawTopLayer(Draw draw)
+}
+
+class BasinFloor {
+  +BasinFloor(double x, double y, double size)
+}
+
+class BasinWall {
+  +BasinWall(double x, double y, double size)
+}
+
+class Water {
+  +Water(double x, double y, double size)
+}
+
+dR <|-- Basin
+tb <|.. Basin
+dR <|-- BasinFloor
+Basin "1" *-- "1" BasinFloor : has
+dR <|-- BasinWall
+Basin "1" *-- "2" BasinWall : has
+dR <|-- Water
+tb <|.. Water
+Basin "1" *-- "1" Water : has
+@enduml

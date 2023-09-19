@@ -315,13 +315,21 @@ Class diagram to demonstrate the above (also shown earlier for OCP):
 
 <img src=PUML/OcpExample.png>
 
-## Part 3 - The Robot's Body Composition
+## Part 4 - Application of Same Key Principles in Composition of `CompleteRobot` and `Basin`
 
-As has been done with constructing the robot's abilities, in composing the robot's bodyparts, the above concepts mentioned previously are also applied.
+As has been done with constructing the robot's abilities, in composing the robot's bodyparts, as well as a "basin"'s parts, the above concepts mentioned previously are also applied.
 
-Here is the class diagram of just the classes that compose the `CompleteRobot`'s visible body
+Here is the class diagram containing just the classes which `CompleteRobot`'s visible body are composed of:
 
 <img src=PUML/RobotComposition.png>
+
+Here is the class diagram containing just the classes which `Basin`'s visible body are composed of:
+
+<img src=PUML/BasinComposition.png>
+
+In the above designs, the application development key principles are obeyed.
+
+(explain how)
 
 # Complete Class Diagram
 
