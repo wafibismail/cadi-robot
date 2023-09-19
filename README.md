@@ -107,7 +107,7 @@ Example:
 Here, the superclass CompleteRobot is written in a way that it should not need to be modified even in the case of introduction of either:
 
 - new behaviour e.g., different way of moving the robot's limbs for an existing task e.g., walking.
-- new tasks for the robot to do, e.g., soaking the robot's hands
+- new tasks for the robot to do, e.g., performing squats, or soaking the robot's hands
 
 ```Java
 public class CrabCompleteRobot extends CompleteRobot{
