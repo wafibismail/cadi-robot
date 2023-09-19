@@ -66,9 +66,9 @@ Interface that accompanies `Draw.java`. This interface provides a basic capabili
 
 Method used in `RobotClient`:
 
-- `void mousePressed(double x, double y)` - Invoked when the mouse has been pressed.
+- `void mousePressed(double x, double y)` - Invoked when the mouse has been pressed, with the cursor's coordinates passed as double values `x` and `y` as its arguments.
 
-## Part 2 - Used Java concepts
+## Part 2 - Newer (for us) programming concepts
 
 ### Interface
 
@@ -95,6 +95,30 @@ private boolean bothHandsCanFit(Touchable obj) {
   return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
 }
 ```
+
+### Abstract Class
+
+Data abstraction is the process of hiding certain details and showing only essential information to the user.
+
+Abstraction can be achieved with either abstract classes or interfaces (which you will learn more about in the next chapter).
+
+The abstract keyword is a non-access modifier, used for classes and methods:
+
+- Abstract class: is a restricted class that cannot be used to create objects (to access it, it must be inherited from another class).
+
+- Abstract method: can only be used in an abstract class, and it does not have a body. The body is provided by the subclass (inherited from).
+
+To access the abstract class, it must be inherited from another class.
+
+In our case, `DrawableCircle` and `DrawableRectangle` are abstract classes. They cannot be instantiated (create objects derived directly from them). 
+
+<img src=PUML/AbstractClasses.png>
+
+### Enum
+
+
+
+## Part 3 - Abiding by programming best practices
 
 ### The Open-Closed Principle
 
