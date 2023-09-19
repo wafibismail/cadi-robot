@@ -257,6 +257,10 @@ As demonstrated in the case of `CompleteRobot` and its subclasses, each of the s
   - `SquattingCompleteRobot` - Enables the `CompleteRobot` to perform squats, and nothing more
     - `HandWashingSquattingCompleteRobot` - A subclass of `SquattingCompleteRobot`. It enables the `SquattingCompleteRobot` to wash its hands, and nothing more
 
+Class diagram shown earlier for OCP:
+
+<img src=PUML/OcpExample.png>
+
 # Complete Class Diagram
 
 <img src=PUML/ClassesHierarchy.png>
