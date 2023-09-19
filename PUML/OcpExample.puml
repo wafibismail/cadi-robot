@@ -1,0 +1,35 @@
+@startuml "OCP Example"
+
+class "CompleteRobot" as CR {
+  -ActionStep moveAction
+  -Action curentAction
+  -Speech speech
+
+  +CompleteRobot(double x, double y, double radius)
+
+  #changeMoveAction(ActionStep newMoveAction)
+  #changeAction(Action newAction)
+
+  #void act()
+  #void act(Direction dir)
+  +void gotoX(double destX, String destLabel)
+  -void moveLeft()
+  -void moveRight()
+  #void say(String speechText)
+}
+
+class "HandWashingCompleteRobot" as HWCR {
+    +HandWashingCompleteRobot(double x, double y, double radius)
+    
+    -boolean bothHandsCanFit(Touchable obj)
+    -void soakHands()
+    +void squat()
+    +void useBasin(Basin basin)
+}
+
+class "CrabCompleteRobot" as CCR {
+  +CrabCompleteRobot(double x, double y, double radius)
+}
+CR <|-- CCR
+CR <|-- HWCR
+@enduml

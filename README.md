@@ -85,10 +85,80 @@ private boolean bothHandsCanFit(Touchable obj) {
   double leftHandX = getArm(0).getExtremityXEnd()-0.25;
   double rightHandX = getArm(1).getExtremityXEnd()+0.25;
 
-  // Check that both hands are within the x range bounded by the object
+  // Check that both hands are within the x range covered by the object
   return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
 }
 ```
+
+Notice that the classes `Basin`, `Water`, and `Torso` all implement the `Touchable` interface.
+
+What this results in is the three classes will be required to implement the three methods declared in the interface.
+
+Also, any object belonging to any of these three classes can be passed as argument to this method.
+
+## The Open-Closed Principle
+
+> "Software entities (classes, modules, functions, etc.) should be open for extension but closed for modification."
+
+Example:
+
+<img src=PUML/OcpExample.png>
+
+Here, the superclass CompleteRobot is written in a way that it should not need to be modified even in the case of introduction of either:
+
+- new tasks for the robot to do, e.g., soaking the robot's hands
+- new behaviour e.g., different way of moving the robot's limbs for an existing task e.g., walking.
+
+
+```Java
+public class HandWashingCompleteRobot extends CompleteRobot{
+  // This subclass has four more methods and a different Action
+  // both of which are required for it to "soak hands in water"
+  // and "perform squats" as its additional activity
+  public HandWashingCompleteRobot(double x, double y, double radius) {
+    super(x, y, radius);
+    this.changeAction(new ActionSquat(this));
+    say("Hello! I am the hand-soaking robot.");
+  }
+
+  private boolean bothHandsCanFit(Touchable obj) {
+    double leftHandX = getArm(0).getExtremityXEnd()-0.25;
+    double rightHandX = getArm(1).getExtremityXEnd()+0.25;
+
+    // Check that both hands are within the x range covered by the object
+    return obj.isHTouched(leftHandX) && obj.isHTouched(rightHandX);
+  }
+
+  private void soakHands() {
+    act(Direction.DOWN);
+    say("Soaking my hands!");
+  }
+  
+  public void squat() {
+    act();
+    say("I am performing SQUATS");
+  }
+
+  public void useBasin(Basin basin) {
+    if (bothHandsCanFit(basin)) soakHands();
+    else goToX(basin.getX(), "THE WATER BASIN");
+  }
+}
+```
+
+```Java
+public class CrabCompleteRobot extends CompleteRobot{
+  // This subclass is almost an exact copy of CompleteRobot,
+  // but with a different way of walking, i.e., Crabstep
+  public CrabCompleteRobot(double x, double y, double radius) {
+    super(x, y, radius);
+    this.changeMoveAction(new ActionCrabstep(this));
+    say("And I am the crab-walking robot.");
+  }
+}
+```
+
+More behaviours can be introduced by creating simple subclasses of either `CompleteRobot`, `HandWashingCompleteRobot`, or `CrabCompleteRobot` as their superclass, instead of modifying the three directly which would break the *Open-Close Principle*.
 
 # Complete Class Diagram
 
