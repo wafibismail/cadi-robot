@@ -110,6 +110,7 @@ Here, the superclass CompleteRobot is written in a way that it should not need t
 - new tasks for the robot to do, e.g., performing squats, or soaking the robot's hands
 
 ```Java
+// CrabCompleteRobot.java
 public class CrabCompleteRobot extends CompleteRobot{
   // This subclass is almost an exact copy of CompleteRobot,
   // but with a different way of walking, i.e., Crabstep
@@ -122,6 +123,7 @@ public class CrabCompleteRobot extends CompleteRobot{
 ```
 
 ```Java
+// SquattingCompleteRobot.java
 public class SquattingCompleteRobot extends CompleteRobot{
   // This subclass has a different Action i.e. ActionSquat.
   // It "performs squats" as its additional activity
@@ -139,6 +141,7 @@ public class SquattingCompleteRobot extends CompleteRobot{
 ```
 
 ```Java
+// HandWashingSquattingCompleteRobot.java
 public class HandWashingSquattingCompleteRobot extends SquattingCompleteRobot{
   // This subclass has three more methods
   // which are required for it to "soak hands in water"
@@ -172,8 +175,86 @@ More behaviours can be introduced by creating simple subclasses of either `Compl
 
 - `CompleteRobot` - The most basic functional robot - walks normally and can neither "soak hands" nor "perform squats"
 - `CrabCompleteRobot` - A robot that is still basic, but walks differently i.e. crab-walk
-- `SquattingCompleteRobot` - A robot which can "perform squats"
+- `SquattingCompleteRobot` - A basic robot which can also "perform squats"
 - `HandWashingSquattingCompleteRobot` - A robot which can "soak hands" and "perform squats"
+
+## The Don't Repeat Yourself Principle (DRY)
+
+> ... the DRY principle forbids duplicating information or code across different locations in a codebase.
+
+By making use of inheritance, such as seen in the *Open-Close Principle* example, the *Don't Repeat Yourself Principle (Dry)* is also abided by, as methods and fields common to all robots are encapsulated within the superclass `CompleteRobot`.
+
+```Java
+// CompleteRobot.java
+public class CompleteRobot extends HeadTorsoArmsLegs{
+  private ActionStep moveAction;
+  private Action currentAction;
+  private Speech speech;
+  
+  public CompleteRobot(double x, double y, double radius) {
+    super(x, y, radius);
+
+    this.moveAction = new ActionStep(this);
+    this.currentAction = new Action(this);
+    this.moveAction.groundRobot();
+    this.speech = new Speech(x, getForeHeadY() + radius);
+    addChild(speech);
+  }
+
+  protected void changeMoveAction(ActionStep newMoveAction) {
+    this.moveAction = newMoveAction;
+  }
+
+  protected void changeAction(Action newAction) {
+    this.currentAction = newAction;
+  }
+
+  protected void act() {
+    this.currentAction.act();
+  }
+
+  protected void act(Direction dir) {
+    this.currentAction.act(dir);
+  }
+
+  public void goToX(double destX, String destLabel) {
+    if (this.getX() < destX) {
+      moveRight();
+      say("I am moving right towards " + destLabel);
+    }
+    else {
+      moveLeft();
+      say("I am moving left towards " + destLabel);
+    }
+  }
+
+  private void moveLeft() {
+    this.moveAction.act(Direction.LEFT);
+  }
+
+  private void moveRight() {
+    this.moveAction.act(Direction.RIGHT);
+  }
+
+  protected void say(String speechText) {
+    speech.changeText(speechText);
+  }
+}
+```
+
+Without inheritance, there would be an additional 50 lines of code for each new type of robot.
+
+## The Single Responsibility Principle
+
+> The Single Responsibility Principle (SRP) is a fundamental principle in software design that states that **a class or module** should have only one reason to change, meaning it **should have only one responsibility**.
+>*Each class or function should do one thing and do it well.*
+
+As demonstrated in the case of `CompleteRobot` and its subclasses, each of the subclasses are responsible of changing only aspect of the superclass's behaviour:
+
+- `CompleteRobot` - Direct superclass of the two below
+  - `CrabCompleteRobot` - Changes only the `CompleteRobot`'s walk style
+  - `SquattingCompleteRobot` - Enables the `CompleteRobot` to perform squats, and nothing more
+    - `HandWashingSquattingCompleteRobot` - A subclass of `SquattingCompleteRobot`. It enables the `SquattingCompleteRobot` to wash its hands, and nothing more
 
 # Complete Class Diagram
 
