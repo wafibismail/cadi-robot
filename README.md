@@ -49,7 +49,7 @@ This is a dependency of `Draw.java`
 
 Drawing library. This class provides a basic capability for creating drawings with your programs. It uses a simple graphics model that allows you to create drawings consisting of points, lines, and curves in a window on your computer and to save the drawings to a file. This is the object-oriented version of standard draw; it supports multiple independent drawing windows.
 
-Used method:
+Used methods:
 
 - `void setPenColor(Color color)` - Sets the pen color to the given color.
 - `void clear(Color color)` - Clears the screen to the given color.
@@ -62,10 +62,24 @@ Used method:
 
 Interface that accompanies `Draw.java`. This interface provides a basic capability for responding to keyboard in mouse events from `Draw` via callbacks.
 
-Used method:
+`RobotClient` implements this interface.
+
+Method used in `RobotClient`:
 
 - `void mousePressed(double x, double y)` - Invoked when the mouse has been pressed.
 
+# Part 2 - Used Java concepts
+
+## Interface
+
+Interface is a type, just as a class is a type. It is used:
+- to define a protocol of behavior that can be implemented by any class anywhere in the class hierarchy, or
+- for capturing similarities among unrelated classes without artificially forcing a class relationship.
+
+Example:
+
+<img src=PUML/InterfaceExample.png>
+
 # Complete Class Diagram
 
-<img src=ClassesHierarchy.png>
+<img src=PUML/ClassesHierarchy.png>

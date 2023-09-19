@@ -1,0 +1,45 @@
+@startuml "Interface Examples"
+
+class "HandWashingCompleteRobot" as HWCR {
+    +HandWashingCompleteRobot(double x, double y, double radius)
+    
+    -boolean bothHandsCanFit(Touchable obj)
+    -void soakHands()
+    +void squat()
+    +void useBasin(Basin basin)
+}
+
+note right of HWCR::"boolean bothHandsCanFit(Touchable obj)"
+  This method checks if the Touchable object can currently fit the robot's hands.
+end note
+
+interface "Touchable" as tb{
+  +boolean isTouched(double x, double y)
+  +boolean isHTouched(double x)
+  +boolean isVTouched(double y)
+}
+
+class Basin {
+  -Water water
+  -BasinWall lWall
+  -BasinWall rWall
+  -BasinFloor floor
+  
+  +Basin(double x, double y, double size)
+  +void drawTopLayer(Draw draw)
+}
+
+class Water {
+  +Water(double x, double y, double size)
+}
+
+class "Torso" as dRT {
+  +Torso(double x, double y, double h, double w)
+  +Torso(double x, double y, double radius)
+}
+
+tb <|.. Basin
+tb <|.. Water
+tb <|.. dRT
+
+@enduml
