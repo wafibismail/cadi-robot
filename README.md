@@ -247,6 +247,7 @@ Without inheritance, there would be an additional 50 lines of code for each new 
 ## The Single Responsibility Principle
 
 > The Single Responsibility Principle (SRP) is a fundamental principle in software design that states that **a class or module** should have only one reason to change, meaning it **should have only one responsibility**.
+
 >*Each class or function should do one thing and do it well.*
 
 As demonstrated in the case of `CompleteRobot` and its subclasses, each of the subclasses are responsible of changing only aspect of the superclass's behaviour:
