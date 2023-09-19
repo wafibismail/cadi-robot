@@ -33,6 +33,7 @@ In other words the client should look as simple as possible. Be creative and use
   - The Don't Repeat Yourself Principle (DRY)
   - The Single Responsibility Principle
   - Composite Reuse Design Principle
+- In general, implementing loose coupling to maintain codebase modularity
 
 # Complete Class Diagram
 
