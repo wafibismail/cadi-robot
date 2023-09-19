@@ -116,7 +116,33 @@ In our case, `DrawableCircle` and `DrawableRectangle` are abstract classes. They
 
 ### Enum
 
+> An enum is a special "class" that represents a group of constants
 
+```Java
+public enum Direction {
+  LEFT, RIGHT, DOWN
+}
+```
+
+Similar to classes, enums are accessed using the dot syntax
+
+```Java 
+public void act(Direction dir) {
+  this.act();
+  if (dir==Direction.LEFT)
+    this.getRobot().move(-this.lastDistance, 0);
+  else if (dir==Direction.RIGHT)
+    this.getRobot().move(this.lastDistance, 0);
+}
+```
+
+In our cases, we used Enum for direction of the robot's actions.
+
+There are other possible scenarios where Enums can improve code such as:
+- by making use of the `value()` method
+- using them in `switch` statements
+
+([source](https://www.w3schools.com/java/java_enums.asp))
 
 ## Part 3 - Abiding by programming best practices
 
