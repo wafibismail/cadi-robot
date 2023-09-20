@@ -1,0 +1,20 @@
+@startuml "RobotClient"
+start
+repeat
+if (Mouse button is pressed) then (yes)
+  if (Cursor currently touches the Basin) then (yes)
+    :Robot1 uses Basin;
+  else (no)
+    if (Cursor currently touches Robot1) then (yes)
+      :Robot1 squats;
+    else (no)
+      :Robot1 goes to Cursor;
+    endif
+  endif
+  :Robot2 goes to Cursor;
+else (User exits the program)
+  stop
+endif
+
+
+@enduml

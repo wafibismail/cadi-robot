@@ -337,6 +337,8 @@ In the above designs, the application development key principles are obeyed.
 
 ## Part 5 - `RobotClient` and its Activity Diagram
 
+<img src=PUML/RobotClient.png>
+
 *(to be continued)*
 
 _________________________________________
