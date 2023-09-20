@@ -323,7 +323,7 @@ Here is the class diagram containing just the classes which `CompleteRobot`'s vi
 
 <img src=PUML/RobotComposition.png>
 
-Note that `Eye` and `Head` are direct subclasses of `Drawable Circle`, just as `Torso` and `LimbSegment` are subclasses of `DrawableRectangle`. These superclasses are omitted from this diagram to keep it neat.
+Note that `Eye` and `Head` are direct subclasses of `DrawableCircle`, just as `Torso` and `LimbSegment` are subclasses of `DrawableRectangle`. These superclasses are omitted from this diagram to keep it neat.
 
 -----
 
