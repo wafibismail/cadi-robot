@@ -77,7 +77,7 @@ class "LimbSegment" as LimbSegment {
   -boolean isLeftLimb
   -boolean hasNextSegment
 
-  +LimbSegment(double x, double y, double h, double w, boolean isExtremity, boolean isLeftLimb)
+  -LimbSegment(double x, double y, double h, double w, boolean isExtremity, boolean isLeftLimb)
   +LimbSegment(double x, double y, double radius, boolean isLeftLimb)
   
   -void addSegment(LimbSegment segment)
