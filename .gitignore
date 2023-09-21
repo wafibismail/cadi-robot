@@ -1,2 +1,10 @@
 #Ignore .class files
 *.class
+#Screenshot folders
+anim1/
+anim2/
+anim3/
+anim4/
+#Just for isolating the bodyparts and basin parts for illustration in slides
+BasinClient.java
+BodyClient.java

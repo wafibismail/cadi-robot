@@ -9,7 +9,7 @@ public class Basin extends DrawableRectangle implements Touchable{
     water = new Water(x, y, size);
     lWall = new BasinWall(x-size*1.375, y, size);
     rWall = new BasinWall(x+size*1.375, y, size);
-    floor = new BasinFloor(x, 0.25, size);
+    floor = new BasinFloor(x, y-size*0.5, size);
     this.addChild(water);
     this.addChild(lWall);
     this.addChild(rWall);

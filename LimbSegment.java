@@ -4,7 +4,8 @@ public class LimbSegment extends DrawableRectangle{
   private LimbSegment nextSegment;
   private boolean isLeftLimb;
   private boolean hasNextSegment;
-  public LimbSegment(double x, double y, double h, double w, boolean isExtremity, boolean isLeftLimb) {
+  
+  private LimbSegment(double x, double y, double h, double w, boolean isExtremity, boolean isLeftLimb) {
     super(x, y, h, w, Math.PI, isExtremity ? Color.GRAY : Color.CYAN);
     this.hasNextSegment = !isExtremity;
     this.isLeftLimb = isLeftLimb;
