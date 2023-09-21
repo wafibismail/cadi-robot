@@ -333,8 +333,6 @@ Here is the class diagram containing just the classes which `Basin`'s visible bo
 
 In the above designs, the application development key principles are obeyed.
 
-*(explain how)*
-
 ## Part 5 - `RobotClient` and its Activity Diagram
 
 ```Java
@@ -386,8 +384,6 @@ public class RobotClient implements DrawListener{
 ```
 
 <img src=PUML/RobotClient.png>
-
-*(to be continued)*
 
 _________________________________________
 
