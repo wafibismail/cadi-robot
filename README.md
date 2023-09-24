@@ -45,16 +45,16 @@ Small robot, i.e., CrabCompleteRobot:
     <th>Clicking the water basin</th>
   </tr>
   <tr>
-    <td><img src=anims/anim1></td>
-    <td><img src=anims/anim4></td>
+    <td><img src=anims/anim1.gif></td>
+    <td><img src=anims/anim4.gif></td>
   </tr>
   <tr>
     <th>Clicking the big robot's torso</th>
     <th>Clicking the small robot's torso</th>
   </tr>
   <tr>
-    <td><img src=anims/anim2></td>
-    <td><img src=anims/anim3></td>
+    <td><img src=anims/anim2.gif></td>
+    <td><img src=anims/anim3.gif></td>
   </tr>
 <table>
 
