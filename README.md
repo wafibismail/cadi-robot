@@ -24,7 +24,7 @@ del *.class
 
 A Draw window will appear on running the program, with these possible interactions:
 
-Big robot, i.e., HandWashingSquattingRobot:
+Big robot, i.e., HandWashingSquattingCompleteRobot:
 
 - Click its torso:
   - It will perform **squats**
