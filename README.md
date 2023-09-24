@@ -20,6 +20,44 @@ In case of any changes updates to the code base, before recompiling the client, 
 del *.class
 ```
 
+# Expected output
+
+A Draw window will appear on running the program, with these possible interactions:
+
+Big robot, i.e., HandWashingSquattingRobot:
+
+- Click its torso:
+  - It will perform **squats**
+- Click the water basin:
+  - It will soak its hands in it if within reach
+  - Approach it otherwise
+- Click anywhere else:
+  - It will approach the x-position of the cursor
+
+Small robot, i.e., CrabCompleteRobot:
+
+- Click anywhere:
+  - It will approach the x-position of the cursor
+
+<table align=center>
+  <tr>
+    <th>Clicking anywhere but the torso</th>
+    <th>Clicking the water basin</th>
+  </tr>
+  <tr>
+    <td><img src=anims/anim1></td>
+    <td><img src=anims/anim4></td>
+  </tr>
+  <tr>
+    <th>Clicking the big robot's torso</th>
+    <th>Clicking the small robot's torso</th>
+  </tr>
+  <tr>
+    <td><img src=anims/anim2></td>
+    <td><img src=anims/anim3></td>
+  </tr>
+<table>
+
 # Assignment Instructions:
 
 Design and develop a robot simulation application by incorporating object oriented principles such as method overloading, composition and inheritance. Use UML diagrams for your design specification(s). Use Java and <a href=https://algs4.cs.princeton.edu/home/>relevant reusuble libraries offered by Princeton</a>.
